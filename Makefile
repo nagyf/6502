@@ -1,12 +1,16 @@
-objects = main.o
+BUILD_DIR = build
+OBJS = main.o
+ASM = vasm6502_oldstyle 
+ 
+all: $(OBJS)
 
-all: $(objects)
 
 %.o: %.s
-	vasm6502_oldstyle -Fbin -dotdir -o $@ $<
+	@mkdir -p ${BUILD_DIR}
+	${ASM} -Fbin -dotdir -o ${BUILD_DIR}/$@ $<
 
 clean:
-	rm -f main.o
+	rm -rf ${BUILD_DIR}
 
 burn: all
-	minipro -p AT28C256 -w main.o
+	minipro -p AT28C256 -w ${BUILD_DIR}/main.o
