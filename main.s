@@ -112,7 +112,7 @@ reset:
 loop:
     jmp loop
 
-message: .asciiz "Szia Marcsi!"
+message: .asciiz "Hello World!"
 
     .org $fffc
     .word reset
